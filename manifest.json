@@ -17,7 +17,7 @@
   },
 
   "background": {
-    "scripts": ["eventPage.js"],
+    "scripts": ["eventPage.js","jquery-3.1.1.min.js","js/underscore-min.js"],
     "persistent": false
   },
 
