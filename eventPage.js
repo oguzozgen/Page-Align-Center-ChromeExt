@@ -1,4 +1,3 @@
-     
 
      /**
       * @function doMarginAndSaveSite
@@ -12,7 +11,7 @@
       * At the final method save the used value into the saved data list
       * @global storageAppKey = "page-align-sites" is saved data list holder key on storage.
       * @param {string} marginValueNew 
-      */
+      */    
      function doMarginAndSaveSite(tab,marginValueNew) {
          chrome.storage.sync.get('page-align-sites', function (saveSitesDatas) {
                       // Main storage name 
@@ -61,6 +60,7 @@
      }
 
      /**
+      * TODO will move to helperCommon
       * Checks List of booleans, Are they all true
       * @param {Array-Boolean} boolValuesAr ["siteURLKeyword1","siteURLKeyword2"]
       * @returns boolean
@@ -75,6 +75,7 @@
          return res;
      }
      /**
+      * TODO will move to helperCommon
       * Checks Site added or not
       * @param {string} siteUrl 
       * @returns {item:item/null,result:true/false}

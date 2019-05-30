@@ -17,14 +17,14 @@
   },
 
   "background": {
-    "scripts": ["eventPage.js","jquery-3.1.1.min.js","js/underscore-min.js"],
+    "scripts": ["jquery-3.1.1.min.js","js/underscore-min.js","helperCommon.js","eventPage.js"],
     "persistent": false
   },
 
   "content_scripts":[
     {
       "matches": ["*://*/*"],
-      "js": ["content.js", "jquery-3.1.1.min.js"],
+      "js": ["content.js", "jquery-3.1.1.min.js","helperCommon.js"],
       "css": ["content.css"]
     }
   ],

@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>PageFontStyle</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
-        <link rel="stylesheet" type="text/css" href="popup.css"></link>
-        <script src="jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/underscore-min.js"></script>
-        <script src="popup.js"></script>
-  </head>
-  <style>
-    body {
-    min-width:250px;
-    min-height:150px;
-  }
-  </style>
-  <body>
-      <div>
-          <div class="row">
-            <div class="col-sm-12">
-                <div class="value" id="range-value-id">0</div>
-                <input type="range" min="0" max="50" step="1" value="0">
-            </div>         
+
+<head>
+  <title>PageFontStyle</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  </link>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  </link>
+  <script src="jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/underscore-min.js"></script>
+  <script src="helperCommon.js"></script>
+  <script src="popup.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="main-view-id">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="value" id="range-value-id">0</div>
+          <input type="range" min="0" max="50" step="1" value="0">
+        </div>
+      </div>
+      <div class="row" style="margin-top:10%;">
+        <div class="col-sm-12 text-center ">
+          <div class="btn btn-success btn-ls full-width" id="add-site-btn-id">Add New Site</div>
+        </div>
+      </div>
+    </div>
+    <div id="add-site-view-id" class="display-none">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="header-title">ADD</div>
+            </div>
+        </div>
+        <form action="/action_page.php">
+          <div class="form-group">
+            <label for="name">Alias: </label>
+            <input type="name" name="name" class="form-control" id="name">
           </div>
-          <div class="row" style="margin-top:10%;">
-              <div class="col-sm-12 text-center">
-                  <div class="btn btn-warning btn-ls" id="denemeid">Magic</div>
-                </div>         
-              </div>     
-        </div>  
-  </body>
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="text" name="url" class="form-control" id="url">
+          </div>      
+        </form>
+        <div class="row" style="margin-top:10%;">
+            <div class="col-sm-12 text-center ">
+              <div class="btn btn-success btn-ls full-width" id="add-site-submit-id">Add New Site</div>
+            </div>
+          </div>
+    </div>
+  </div>
+</body>
+
 </html>

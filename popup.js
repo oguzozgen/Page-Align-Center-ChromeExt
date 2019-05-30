@@ -1,4 +1,5 @@
-
+//Common methods class defining
+var helperCommon=new helperCommon();
 /**
  * @class Page Align Center PopupJS
  * @description The extention makes center the page that added/configured in saved site data list
@@ -13,61 +14,20 @@ $(function () {
         chrome.tabs.query({
           active: true,
           currentWindow: true
-      }, function (tabs) {
-      
+      }, function (tabs) {      
               // Main storage name 
               const storageAppKey = "page-align-sites";
               var urlCurrent = tabs[0].url;
-              var isResultItemOrFalse = takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
+              var isResultItemOrFalse = helperCommon.takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
               if (isResultItemOrFalse.result === true) {
                 setRangeSliderValue(isResultItemOrFalse.item.marginValue);
               }
           });
       });
     }
+    //Runs when clicked the Icon and if site is saved before loads slider site specific data
     sendOnMessageSiteMenuItem();
-   /**
-      * Checks List of booleans, Are they all true
-      * @param {Array-Boolean} boolValuesAr ["siteURLKeyword1","siteURLKeyword2"]
-      * @returns boolean
-      */
-     function isBoolListAllTrue(boolValuesAr) {
-      let res = true;
-      boolValuesAr.forEach(value => {
-          if (value === false) {
-              res = false;
-          }
-      });
-      return res;
-  }
-  /**
-   * Checks Site added or not
-   * @param {string} siteUrl 
-   * @returns {item:item/null,result:true/false}
-   */
-  function takeSiteItemOnList(dataListSites, urlCurrent) {
-      let resultz = {
-          item: null,
-          result: false
-      };
-      _.each(dataListSites,
-          function (item) {
-              let cond = [];
-              item.keysForMatch.forEach(kFM => {
-                  let res = urlCurrent.includes(kFM);
-                  cond.push(res);
-              });
-              var matchRes = isBoolListAllTrue(cond);
-              if (matchRes === true) {
-                  resultz = {
-                      item: item,
-                      result: true
-                  };
-              }
-          });
-      return resultz;
-  }
-
+  
 
   /**
    * LISTENER
@@ -109,7 +69,6 @@ $(function () {
         tab:tabs[0]
       });
     });
-  
   });
   /**
    * @function setRangeSliderValue
@@ -121,4 +80,14 @@ $(function () {
     $('#range-value-id').html(value);
     $('input[type="range"]').val(value);
   }
+  $('#add-site-btn-id').on('click',function(){
+    $('#main-view-id').addClass('display-none');
+    $('#add-site-view-id').removeClass('display-none');
+
+  });
+  $('#add-site-submit-id').on('click',function(){
+    $('#main-view-id').removeClass('display-none');
+    $('#add-site-view-id').addClass('display-none');
+
+  });
 });
