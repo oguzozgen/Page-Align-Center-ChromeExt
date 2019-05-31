@@ -11,12 +11,13 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/underscore-min.js"></script>
   <script src="helperCommon.js"></script>
+  <script src="addNewSiteLib.js"></script>
   <script src="popup.js"></script>
 </head>
 
 <body>
   <div class="container">
-    <div id="main-view-id">
+    <div id="main-view-id" class="page-class-to-route">
       <div class="row">
         <div class="col-sm-12">
           <div class="value" id="range-value-id">0</div>
@@ -25,31 +26,41 @@
       </div>
       <div class="row" style="margin-top:10%;">
         <div class="col-sm-12 text-center ">
-          <div class="btn btn-success btn-ls full-width" id="add-site-btn-id">Add New Site</div>
+          <div class="btn btn-success full-width" id="add-site-btn-id">Add New Site</div>
         </div>
       </div>
     </div>
-    <div id="add-site-view-id" class="display-none">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-              <div class="header-title">ADD</div>
-            </div>
+    <div id="add-site-view-id" class="display-none page-class-to-route">
+      <div class="row" style="display: flex;">
+        <div class="col-sm-1" id="add-site-view-back-btn-id">
+          <div class="btn btn-default btn-lg no-padding add-site-back-button"> < </div>
         </div>
-        <form action="/action_page.php">
-          <div class="form-group">
-            <label for="name">Alias: </label>
-            <input type="name" name="name" class="form-control" id="name">
+        <div class="col-sm-11 text-center">
+          <div class="header-title">ADD</div>
+        </div>
+      </div>
+      <form id="add-new-site-form-id">
+        <div class="form-group">
+          <label for="name">Alias: </label>
+          <input type="name" name="name" class="form-control" id="add-new-site-form-input-name-id">
+        </div>
+        <div class="form-group">
+          <label for="url">URL:</label>
+          <input type="text" id="add-new-site-form-input-url-id" name="keyword" class="form-control">
+        </div>
+        <ul class="list-group" id="add-site-keyword-list-id">
+        </ul>
+        <li class="list-group-item">
+          <div id="add-site-new-keyword-button-id" class="btn btn-default full-width" style="font-size:24px;">
+            +
           </div>
-          <div class="form-group">
-            <label for="url">URL:</label>
-            <input type="text" name="url" class="form-control" id="url">
-          </div>      
-        </form>
-        <div class="row" style="margin-top:10%;">
-            <div class="col-sm-12 text-center ">
-              <div class="btn btn-success btn-ls full-width" id="add-site-submit-id">Add New Site</div>
-            </div>
-          </div>
+        </li>
+      </form>
+      <div class="row" style="margin-top:10%;">
+        <div class="col-sm-12 text-center ">
+          <div class="btn btn-success full-width" id="add-site-submit-id">Add New Site</div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

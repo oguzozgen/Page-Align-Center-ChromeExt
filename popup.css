@@ -18,14 +18,30 @@ body{
 .full-width{
   width: 100%;
 }
-.header-title{
-  font-size: 34px;
-  font-weight: 800;
-}
 .standard-top-bottom-margin{
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.header-title{
+  font-size: 34px;
+  font-weight: 800;
+}
+/**
+ADD SITE PAGE
+*/
+.add-site-back-button{
+  background: transparent;
+  font-weight: 900;
+}
+#add-site-view-back-btn-id{
+  margin-top: 10px;
+}
+.list-keyword-input-group-style{
+  width: 100%;
+}
+/**
+ADD SITE PAGE FIN
+*/
 /**SLIDER CSS*/
 body {
   background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
@@ -72,3 +88,4 @@ body {
   input[type="range"]::-webkit-slider-thumb:active {
     transform: scale(1.6);
   }
+  /**SLIDER CSS FIN*/

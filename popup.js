@@ -1,5 +1,8 @@
 //Common methods class defining
-var helperCommon=new helperCommon();
+// Page Change-Route inside the Helper
+var helperCommon = new helperCommon();
+//Contains Adding New Site Methods
+var addNewSiteLibIns = new addNewSiteLib();
 /**
  * @class Page Align Center PopupJS
  * @description The extention makes center the page that added/configured in saved site data list
@@ -9,41 +12,46 @@ var helperCommon=new helperCommon();
  * Difference is working diffent margins on different site that user can configure dynamicly
  */
 $(function () {
-    function sendOnMessageSiteMenuItem(){
-      chrome.storage.sync.get('page-align-sites', function (saveSitesDatas) {
-        chrome.tabs.query({
-          active: true,
-          currentWindow: true
-      }, function (tabs) {      
-              // Main storage name 
-              const storageAppKey = "page-align-sites";
-              var urlCurrent = tabs[0].url;
-              var isResultItemOrFalse = helperCommon.takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
-              if (isResultItemOrFalse.result === true) {
-                setRangeSliderValue(isResultItemOrFalse.item.marginValue);
-              }
-          });
-      });
-    }
-    //Runs when clicked the Icon and if site is saved before loads slider site specific data
-    sendOnMessageSiteMenuItem();
-  
+  /**
+   * TODO waiting to get current body margin value and assign to popup values
+   * @param {object} tabs 
+   */
+  function useCurrentBodyMarginToSlider(tabs) {
 
+  }
+  /**
+   * Runs When popup clicked, updates popup inside slider values-texts
+   * if site saved before fills with saved values
+   * otherwise using current body margin-left/right value
+   */
+  function sendOnMessageSiteMenuItem() {
+    chrome.storage.sync.get('page-align-sites', function (saveSitesDatas) {
+      chrome.tabs.query({
+        active: true,
+        currentWindow: true
+      }, function (tabs) {
+        // Main storage name 
+        const storageAppKey = "page-align-sites";
+        var urlCurrent = tabs[0].url;
+        var isResultItemOrFalse = helperCommon.takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
+        if (isResultItemOrFalse.result === true) {
+          setRangeSliderValue(isResultItemOrFalse.item.marginValue);
+        } else {
+          useCurrentBodyMarginToSlider()
+        }
+      });
+    });
+  }
+  //Runs When popup clicked, updates popup inside slider values-texts
+  sendOnMessageSiteMenuItem();
   /**
    * LISTENER
-   * Popup Listener for contentjs and eventPage(background)js
-   * Currently listens first showingPage and  urlChangedActions-updated 
-   * and calling the method name doMarginAndSaveSite with NO values.
    * @param {object} request.todo  ["urlChangedActions","showPageAction"] listens
    */
   chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    //When first page complete on content.js eventpage trigger this
-    if (request.todo === "updateSliderWithSiteItem") {
-      setRangeSliderValue(request.updateSliderValue)
-      //doMarginAndSaveSite();
-    }
+
   });
-  /**SLIDER Initialize*/
+  /**SLIDER Initialize onChange*/
   var elem = document.querySelector('input[type="range"]');
   var rangeValue = function () {
     var newValue = elem.value;
@@ -53,25 +61,25 @@ $(function () {
   elem.addEventListener("input", rangeValue);
   /**
    * @function SliderRangeChange
-   * @description Listens slider and when it's changed triggers doMarginAndSaveSite with New Value of margin
+   * @description Listens slider and when it's changed triggers sendMessage->doMarginAndSaveSite with New Value of margin
    */
   $('input[type="range"]').on('change keyup', function (valueMargin) {
     chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    },
-    function (tabs) {
-      var marginVal = $('#range-value-id').html();
-      var styleMargin = marginVal;
-      chrome.runtime.sendMessage({
-        todo: "doMarginAndSaveSite",
-        marginNew: styleMargin,
-        tab:tabs[0]
+        active: true,
+        currentWindow: true
+      },
+      function (tabs) {
+        var marginVal = $('#range-value-id').html();
+        var styleMargin = marginVal;
+        chrome.runtime.sendMessage({
+          todo: "doMarginAndSaveSite",
+          marginNew: styleMargin,
+          tab: tabs[0]
+        });
       });
-    });
   });
   /**
-   * @function setRangeSliderValue
+   * @function setRangeSliderValue slider&text update
    * @description Changes Range Slider Value
    * WARN updates div html text and input value
    * @param {string} value contains numbers for margin like "15"
@@ -80,14 +88,43 @@ $(function () {
     $('#range-value-id').html(value);
     $('input[type="range"]').val(value);
   }
-  $('#add-site-btn-id').on('click',function(){
-    $('#main-view-id').addClass('display-none');
-    $('#add-site-view-id').removeClass('display-none');
-
+  /**
+   * LISTENER
+   * Main Page Action
+   * Listens "Add New Site" button on main/main-view-id page
+   * WARN pages listed in helperCommon 
+   */
+  $('#add-site-btn-id').on('click', function () {
+    helperCommon.pageChanger("addNew");
+    addNewSiteLibIns.loadAddSiteAutoValues();
   });
-  $('#add-site-submit-id').on('click',function(){
-    $('#main-view-id').removeClass('display-none');
-    $('#add-site-view-id').addClass('display-none');
-
+  /**
+   * LISTENER
+   * Adding Page Action
+   * Listens "Add New Site" button on addNew/add-site-view-id page
+   * WARN pages listed in helperCommon 
+   */
+  $('#add-site-submit-id').on('click', function () {
+    helperCommon.pageChanger("main");
+    addNewSiteLibIns.addNewSiteOnList();
+  });
+    /**
+   * LISTENER
+   * Adding Page Action
+   * adds new keyword record input into the list 
+   */
+  $('#add-site-new-keyword-button-id').on('click', function () {
+    addNewSiteLibIns.addSiteAppendNewKeywordListItem()
+  });
+    /**
+   * LISTENER
+   * Adding Page Action
+   *  Listens "Back" button on addNew/add-site-view-id page
+   * Clears inputs and turnin back to Main page
+   */
+  $('#add-site-view-back-btn-id').on('click', function () {
+   
+    helperCommon.pageChanger("main");
+    addNewSiteLibIns.clearAddSiteForm();
   });
 });

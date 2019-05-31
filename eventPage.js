@@ -17,6 +17,13 @@
                       // Main storage name 
                      const storageAppKey = "page-align-sites";
                      var urlCurrent = tab.url;
+                    //Tight doMarginAndSaveSite()                     
+                    function sendMarginToListenerGiveMargin(valueMargin) {
+                        chrome.tabs.sendMessage(tab.id, {
+                            todo: "giveMargin",
+                            marginValue: valueMargin + "%"
+                        })
+                    }
                      var isResultItemOrFalse = takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
                      if (isResultItemOrFalse.result === true) {
                          //Tight doMarginAndSaveSite() 
@@ -29,22 +36,13 @@
                                  result = marginFromStore;
                              }
                              return result;
-                         }
-                         //Tight doMarginAndSaveSite()                     
-                         function sendMarginToListenerGiveMargin(valueMargin) {
-                             chrome.tabs.sendMessage(tab.id, {
-                                 todo: "giveMargin",
-                                 marginValue: valueMargin + "%"
-                             })
-                         }
+                         }                     
                          //Tight doMarginAndSaveSite()
                          function saveChangedValueToList() {
                              var siteList = Object.assign({}, (saveSitesDatas[storageAppKey]));
                              var siteItem = Object.assign({}, (isResultItemOrFalse.item));
                              siteItem.marginValue = actionMarginValue;
                              siteList[siteItem.name] = Object.assign({}, (siteItem));
-                             console.log("up to date version");
-                             console.log(siteList);
                              chrome.storage.sync.set({
                                  'page-align-sites': Object.assign({}, (siteList))
                              });
@@ -55,6 +53,9 @@
                          var actionMarginValue = decideMarginSavedOrNewValue(marginValueNew);
                          sendMarginToListenerGiveMargin(actionMarginValue);
                          saveChangedValueToList();
+                     }
+                     else{
+                        sendMarginToListenerGiveMargin(marginValueNew)
                      }
                  });
      }
@@ -168,10 +169,6 @@
       */
      chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
          if (changeInfo.status === "complete" && tab.url.substring(0, 4) === "http") {
-             doMarginAndSaveSite(tab);
-            /* chrome.runtime.sendMessage({
-                 todo: "urlChangedActions",
-                 tab: tab
-             });*/
+             doMarginAndSaveSite(tab);           
          }
      });
