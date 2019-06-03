@@ -3,6 +3,8 @@
 
 <head>
   <title>PageFontStyle</title>
+  <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+  </link>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   </link>
   <link rel="stylesheet" type="text/css" href="popup.css">
@@ -17,51 +19,84 @@
 
 <body>
   <div class="container">
-    <div id="main-view-id" class="page-class-to-route">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="value" id="range-value-id">0</div>
-          <input type="range" min="0" max="50" step="1" value="0">
-        </div>
-      </div>
-      <div class="row" style="margin-top:10%;">
-        <div class="col-sm-12 text-center ">
-          <div class="btn btn-success full-width" id="add-site-btn-id">Add New Site</div>
-        </div>
-      </div>
-    </div>
-    <div id="add-site-view-id" class="display-none page-class-to-route">
-      <div class="row" style="display: flex;">
-        <div class="col-sm-1" id="add-site-view-back-btn-id">
-          <div class="btn btn-default btn-lg no-padding add-site-back-button"> < </div>
-        </div>
-        <div class="col-sm-11 text-center">
-          <div class="header-title">ADD</div>
-        </div>
-      </div>
-      <form id="add-new-site-form-id">
-        <div class="form-group">
-          <label for="name">Alias: </label>
-          <input type="name" name="name" class="form-control" id="add-new-site-form-input-name-id">
-        </div>
-        <div class="form-group">
-          <label for="url">URL:</label>
-          <input type="text" id="add-new-site-form-input-url-id" name="keyword" class="form-control">
-        </div>
-        <ul class="list-group" id="add-site-keyword-list-id">
-        </ul>
-        <li class="list-group-item">
-          <div id="add-site-new-keyword-button-id" class="btn btn-default full-width" style="font-size:24px;">
-            +
+
+    <section id="main-view-section-id">
+      <div id="main-view-id" class="page-class-to-route">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="value" id="range-value-id">0</div>
+            <input type="range" min="0" max="50" step="1" value="0">
           </div>
-        </li>
-      </form>
-      <div class="row" style="margin-top:10%;">
-        <div class="col-sm-12 text-center ">
-          <div class="btn btn-success full-width" id="add-site-submit-id">Add New Site</div>
+        </div>
+        <div class="row" style="margin-top:10%;">
+          <div class="col-sm-12 text-center ">
+            <div class="btn btn-default full-width main-view-add-new-site-button" id="add-site-btn-id">
+              &#8734;
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="add-new-site-view-section-id">
+      <div id="add-site-view-id" class="display-none page-class-to-route">
+        <div class="row">
+          <div class="col-sm-12 text-center" id="add-site-view-back-btn-id">
+            <div class="btn btn-default btn-lg no-padding add-site-back-button" title="Back to Home">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-chevron-left">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="col-sm-12 text-center">
+            <div class="header-title">ADD</div>
+          </div>
+        </div>
+
+        <form id="add-new-site-form-id">
+          <div class="form-group">
+            <label class="sr-only" for="name">Alias</label>
+            <div class="input-group">
+              <input type="name" name="name" class="form-control add-new-site-form-input-style"
+                id="add-new-site-form-input-name-id">
+              <div class="input-group-addon add-new-site-form-input-group-addon-style">ALIAS</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="url">URL</label>
+            <div class="input-group">
+              <input type="text" name="keyword" class="form-control add-new-site-form-input-style"
+                id="add-new-site-form-input-url-id">
+              <div
+                class="input-group-addon add-new-site-form-input-group-addon-style add-new-site-form-input-group-addon-style-url">
+                URL</div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10%;">
+              <div class="col-sm-12 text-center ">
+                <div class="btn btn-default full-width add-site-add-new-keyword-button" id="add-site-new-keyword-button-id">
+                  +
+                </div>
+              </div>
+          </div>    
+          <ul class="list-group ul-list-group-keyword no-margin no-padding" id="add-site-keyword-list-id">
+          </ul>
+        </form>
+
+        <div class="row" style="margin-top:10%;">
+          <div class="col-sm-12 text-center ">
+            <div class="btn btn-default full-width add-site-add-new-keyword-button" id="add-site-submit-id">
+                &#10003;
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
   </div>
 </body>
 

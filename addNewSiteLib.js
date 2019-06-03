@@ -54,12 +54,12 @@ addNewSiteLib.prototype.addSiteAppendNewKeywordListItem = function (value) {
     value = "";
   }
   var html = `
-        <li class="list-group-item">
-          <div class="col-md-10 input-group list-keyword-input-group-style">
-            <input type="text" class="form-control list-keyword-input-class" name="keyword" placeholder="New Keyword" value="${value}">
+        <li class="list-group-item no-margin no-padding ul-li-list-group-item-keyword">
+          <div class="col-md-10 input-group ul-li-list-keyword-input-group-style">
+            <input type="text" class="form-control ul-li-list-keyword-input-class " name="keyword" placeholder="New Keyword" value="${value}">
           </div>
         </li>`;
-  $('#add-site-keyword-list-id').append(html);
+  $('#add-site-keyword-list-id').prepend(html);
 };
 /**
  * @function saveNewSiteToStorage Saves the new Site values into the storage
@@ -103,7 +103,9 @@ addNewSiteLib.prototype.addNewSiteOnList = function () {
     name: "keyword"
   });
   _.each(keywordsObjectList, function (item) {
+    if(item.value!==""&&item.value!==null&&item.value!==" "){
     saveSiteItem.keysForMatch.push(item.value);
+    }
   });
   saveSiteItem.marginValue = $('#range-value-id').html();
   self.saveNewSiteToStorage(saveSiteItem);
