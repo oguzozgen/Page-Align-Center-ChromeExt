@@ -79,9 +79,40 @@ ADD SITE PAGE
   transition: 0.4s;
   transform: scale(2.5);
 }
-
 #add-site-view-back-btn-id{
   margin-top: 10px;
+}
+#add-site-submit-id{
+    
+}
+
+.add-site-add-submit-button{
+  background: transparent;
+  border: 0px;
+  color: white;
+    margin-top: -8px;
+  font-weight: 700;
+  font-size: 39px;
+  font-family: sans-serif;
+  text-shadow: rgba(174,33,255,1) -5px -2px 1px;
+  transform: scale(1);
+  transition: 1s;
+}
+.add-site-add-submit-button:hover{
+  background: transparent;
+  border: 0px;
+  color: white;
+    margin-top: -8px;
+  font-weight: 700;
+  font-size: 39px;
+  font-family: sans-serif;
+  text-shadow: rgba(174,33,255,1) -5px -2px 1px;
+  transform: scale(1.1);
+  transition: 1s;
+}
+
+#add-new-site-form-id{
+    margin-bottom: 45px;
 }
 .ul-li-list-keyword-input-group-style{
   width: 100%;
@@ -123,7 +154,7 @@ input.add-new-site-form-input-style:focus {
   background: transparent;
   border: 0px;
   background: transparent;
-  border-bottom: 2px black double;
+  /*border-bottom: 2px black double;*/
   color: white;
   text-shadow: 1px 1px 2px black;
 }

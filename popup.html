@@ -30,8 +30,10 @@
         </div>
         <div class="row" style="margin-top:10%;">
           <div class="col-sm-12 text-center ">
-            <div class="btn btn-default full-width main-view-add-new-site-button" id="add-site-btn-id">
-              &#8734;
+            <div class="btn btn-default full-width main-view-add-new-site-button" 
+                 title="Do Center Evertime For This Website" 
+                 id="add-site-btn-id">
+              &#10003;
             </div>
           </div>
         </div>
@@ -41,58 +43,59 @@
     <section id="add-new-site-view-section-id">
       <div id="add-site-view-id" class="display-none page-class-to-route">
         <div class="row">
-          <div class="col-sm-12 text-center" id="add-site-view-back-btn-id">
-            <div class="btn btn-default btn-lg no-padding add-site-back-button" title="Back to Home">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-chevron-left">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
+              <div class="col-xs-2 text-center no-padding no-margin" id="add-site-view-back-btn-id">
+                <div class="btn btn-default btn-lg no-padding add-site-back-button" title="Back to Home">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="34" viewBox="0 0 24 24" fill="none"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </div>
+              </div>    
+            <div class="col-xs-8 no-padding no-margin text-center">
+                <div class="btn btn-default full-width add-site-add-submit-button" 
+                     title="Do Center Evertime For This Website"  
+                     id="add-site-submit-id">
+                   SAVE
+                </div>
+              
             </div>
-          </div>
-          <div class="col-sm-12 text-center">
-            <div class="header-title">ADD</div>
-          </div>
-        </div>
+       </div>   
 
         <form id="add-new-site-form-id">
           <div class="form-group">
             <label class="sr-only" for="name">Alias</label>
             <div class="input-group">
-              <input type="name" name="name" class="form-control add-new-site-form-input-style"
+              <input type="name" name="name" class="form-control add-new-site-form-input-style"  title="Anything That You Can Write"
                 id="add-new-site-form-input-name-id">
-              <div class="input-group-addon add-new-site-form-input-group-addon-style">ALIAS</div>
+              <div class="input-group-addon add-new-site-form-input-group-addon-style" title="Anything That You Can Write">ALIAS</div>
             </div>
           </div>
           <div class="form-group">
-            <label class="sr-only" for="url">URL</label>
+            <label class="sr-only" for="url" title="Website">URL</label>
             <div class="input-group">
               <input type="text" name="keyword" class="form-control add-new-site-form-input-style"
-                id="add-new-site-form-input-url-id">
+                id="add-new-site-form-input-url-id" title="Without Route or Parameter">
               <div
-                class="input-group-addon add-new-site-form-input-group-addon-style add-new-site-form-input-group-addon-style-url">
+                class="input-group-addon add-new-site-form-input-group-addon-style add-new-site-form-input-group-addon-style-url" title="Website">
                 URL</div>
             </div>
           </div>
 
-          <div class="row" style="margin-top:10%;">
+          <div class="row" >
               <div class="col-sm-12 text-center ">
-                <div class="btn btn-default full-width add-site-add-new-keyword-button" id="add-site-new-keyword-button-id">
+                <div class="btn btn-default no-padding no-margin add-site-add-new-keyword-button"
+                      title="Keyword New"
+                      id="add-site-new-keyword-button-id">
                   +
                 </div>
               </div>
           </div>    
-          <ul class="list-group ul-list-group-keyword no-margin no-padding" id="add-site-keyword-list-id">
+          <ul class="list-group ul-list-group-keyword no-margin no-padding" 
+              title=' "AND" Related Keywords For Selection of Website'
+              id="add-site-keyword-list-id">
           </ul>
         </form>
-
-        <div class="row" style="margin-top:10%;">
-          <div class="col-sm-12 text-center ">
-            <div class="btn btn-default full-width add-site-add-new-keyword-button" id="add-site-submit-id">
-                &#10003;
-            </div>
-          </div>
-        </div>
       </div>
   </div>
   </section>

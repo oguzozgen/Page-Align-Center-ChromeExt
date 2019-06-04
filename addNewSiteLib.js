@@ -25,7 +25,7 @@ addNewSiteLib.prototype.loadAddSiteAutoValues = function () {
     },
     function (tabs) {
       var url = tabs[0].url;
-      var urlSplittedBySlash = url.split('/', );
+      var urlSplittedBySlash = url.split('/');
       var websiteWithoutRoutes = urlSplittedBySlash[2];
       var websiteAfterTheDomain = urlSplittedBySlash[3];
       var keyWithOutParams = websiteAfterTheDomain.indexOf('?');
@@ -56,7 +56,12 @@ addNewSiteLib.prototype.addSiteAppendNewKeywordListItem = function (value) {
   var html = `
         <li class="list-group-item no-margin no-padding ul-li-list-group-item-keyword">
           <div class="col-md-10 input-group ul-li-list-keyword-input-group-style">
-            <input type="text" class="form-control ul-li-list-keyword-input-class " name="keyword" placeholder="New Keyword" value="${value}">
+            <input type="text" 
+                    class="form-control ul-li-list-keyword-input-class" 
+                    name="keyword"
+                    placeholder="New Keyword" 
+                    title="Add New Keyword around the URL for more " AND " filtered page"
+                    value="${value}">
           </div>
         </li>`;
   $('#add-site-keyword-list-id').prepend(html);
