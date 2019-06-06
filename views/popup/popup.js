@@ -125,15 +125,7 @@ $(function () {
   $('#add-site-view-back-btn-id').on('click', function () {   
     helperCommon.pageChanger("main");
     addNewSiteLibIns.clearAddSiteForm();
-  });   
-    
-  $('input.ul-li-list-keyword-input-class').on('change keypress',function(e){
-      console.log("keypressed");
-      console.log(e);
-      e.preventDefault();
-  });   
+  });     
 
 });
-    
-  var elements = document.getElementsByClassName("ul-li-list-keyword-input-class");
-    $(elements).on('change keypress',function(){console.log("asdasd");});
+  

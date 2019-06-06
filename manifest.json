@@ -12,20 +12,27 @@
 
   "page_action": {
     "default_icon": "img/icon16.png",
-    "default_popup": "popup.html",
+    "default_popup": "./views/popup/popup.html",
     "default_title": "Page Align Center"
   },
 
   "background": {
-    "scripts": ["jquery-3.1.1.min.js","js/underscore-min.js","helperCommon.js","eventPage.js"],
+    "scripts": [
+      "./dependencies/jquery-3.1.1.min.js",
+      "./dependencies/underscore-min.js",
+      "./helpers/helperCommon.js",
+      "./views/background/eventPage.js"],
     "persistent": false
   },
 
   "content_scripts":[
     {
       "matches": ["*://*/*"],
-      "js": ["content.js", "jquery-3.1.1.min.js","helperCommon.js"],
-      "css": ["content.css"]
+      "js": [ 
+        "./dependencies/jquery-3.1.1.min.js",
+        "./helpers/helperCommon.js",
+        "./views/content/content.js"],
+      "css": ["./views/content/content.css"]
     }
   ],
 
