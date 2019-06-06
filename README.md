@@ -4,7 +4,9 @@ Making websites configurable center
 And user can save with keywords about the URL 
 I will work at background and work for selected websites.
 
-<div style="width:100%;height:0;padding-bottom:96%;position:relative;"><iframe src="https://giphy.com/embed/gFo5g1FoIbg21U7VcG" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/gFo5g1FoIbg21U7VcG">via GIPHY</a></p>
+![Center With Sliding](https://media.giphy.com/media/gFo5g1FoIbg21U7VcG/giphy.gif)
+
+![Action Saving Website With URL Keywords](https://media.giphy.com/media/SA6nhdz8diiG4sVP9v/giphy.gif)
 
 ### Prerequisites
 Works on `Chromium` based browsers like 
