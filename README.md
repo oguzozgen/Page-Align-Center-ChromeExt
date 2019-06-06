@@ -4,9 +4,8 @@ Making websites configurable center
 And user can save with keywords about the URL 
 I will work at background and work for selected websites.
 
-                               ![Center With Sliding](https://media.giphy.com/media/gFo5g1FoIbg21U7VcG/giphy.gif)
-
-                       ![Action Saving Website With URL Keywords](https://media.giphy.com/media/SA6nhdz8diiG4sVP9v/giphy.gif)
+...............................![Center With Sliding](https://media.giphy.com/media/gFo5g1FoIbg21U7VcG/giphy.gif)
+......................![Action Saving Website With URL Keywords](https://media.giphy.com/media/SA6nhdz8diiG4sVP9v/giphy.gif)
 
 ### Prerequisites
 Works on `Chromium` based browsers like 
