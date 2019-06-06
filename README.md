@@ -17,11 +17,19 @@ Works on `Chromium` based browsers like
  `Opera`
 End with an example of getting some data out of the system or using it for a little demo
 
+
 ## Built With
 
 * [JqueryJS](https://blog.jquery.com/2016/09/22/jquery-3-1-1-released/) - Used to DOM manipulation
 * [underscoreJS](https://underscorejs.org) - Used to filtering Object-Data
 * [Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/) - Used to placing the elements
+
+
+### Planned Development 
+ 
+* Save Sites CRUD List Page
+* Saving Data on Cloud with Idetity Prodiver
+
 
 ## Contributing
 
