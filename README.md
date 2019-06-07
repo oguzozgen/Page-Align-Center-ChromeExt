@@ -1,8 +1,8 @@
 # Page Align Center Chrome & Chromium Extension
 
-Making websites configurable center
-And user can save with keywords about the URL 
-I will work at background and work for selected websites.
+Making websites configurable center.
+Websites can be saved with keywords around the URL. 
+Extension will be working at background while surfing for selected websites.
 
 
 ![Center With Sliding](https://media.giphy.com/media/gFo5g1FoIbg21U7VcG/giphy.gif)
