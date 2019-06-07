@@ -15,7 +15,6 @@ Extension will be working at background while surfing for selected/saved website
 Works on `Chromium` based browsers like 
  `Chrome`
  `Opera`
-End with an example of getting some data out of the system or using it for a little demo
 
 
 ## Built With
