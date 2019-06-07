@@ -2,7 +2,7 @@
 
 Making websites configurable center.
 Websites can be saved with keywords around the URL. 
-Extension will be working at background while surfing for selected websites.
+Extension will be working at background while surfing for selected/saved websites.
 
 
 ![Center With Sliding](https://media.giphy.com/media/gFo5g1FoIbg21U7VcG/giphy.gif)
