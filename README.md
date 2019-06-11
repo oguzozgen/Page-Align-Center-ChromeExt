@@ -33,7 +33,7 @@ XD File (drive) - https://drive.google.com/file/d/1SalhJ27E_tN92GsZQ2azeSLrqjtcW
 ### Will be Develop
  
 * Saved Sites CRUD List Page
-* Saving Data on Cloud with Idetity Prodiver
+* Saving Data on Cloud with Idetity Provider (ID4)
 
 
 
