@@ -1,6 +1,7 @@
 # Page Align Center Chrome & Chromium Extension
 
-#Download Chrome Webstore
+#Download on Chrome Webstore :
+
 https://chrome.google.com/webstore/detail/page-align-center/neckdhljenflakkgcbidcnbdjjbpllnk
 
 Making websites configurable center.
