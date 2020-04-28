@@ -36,7 +36,7 @@ XD File (drive) - https://drive.google.com/file/d/1SalhJ27E_tN92GsZQ2azeSLrqjtcW
 
 ### Will be Develop
  
-* ON / OFF Animation - Toggle (Thanks Filip)
+* (DONE) ON / OFF Animation - Toggle (Thanks Filip) 
 * Saved Sites CRUD List Page
 * Saving Data on Cloud with Idetity Provider (ID4)
 
