@@ -3,7 +3,7 @@
 
   "name": "Page Align Center",
   "description": "Page Align Center is giving configurable margins to selected/added websites to their left and right that help to focus at center on wide screen",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "128": "img/icon128.png",
     "48": "img/icon48.png",
@@ -20,8 +20,12 @@
     "scripts": [
       "./dependencies/jquery-3.1.1.min.js",
       "./dependencies/underscore-min.js",
+      "./dependencies/bootstrap-switch/bootstrap-switch.min.js",
       "./helpers/helperCommon.js",
       "./views/background/eventPage.js"],
+      "css": [
+        "./dependencies/bootstrap-switch/bootstrap-switch.min.css"
+      ],
     "persistent": false
   },
 
@@ -30,9 +34,12 @@
       "matches": ["*://*/*"],
       "js": [ 
         "./dependencies/jquery-3.1.1.min.js",
+        "./dependencies/bootstrap-switch/bootstrap-switch.min.js",
         "./helpers/helperCommon.js",
         "./views/content/content.js"],
-      "css": ["./views/content/content.css"]
+      "css": [
+        "./dependencies/bootstrap-switch/bootstrap-switch.min.css",
+        "./views/content/content.css"]
     }
   ],
 

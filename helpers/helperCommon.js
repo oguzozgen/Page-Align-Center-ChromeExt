@@ -4,11 +4,13 @@
  * @description Contains methods that used many times on different JS files.
  */
 function helperCommon(){
+    this.countNotify=0;
     /**
      * Page list and alias for changing pages
      */
     this.pagesIdsToRoute={
       "main":"main-view-id",
+      "settings":"settings-view-id",
       "addNew":"add-site-view-id"  
     };
 }
@@ -74,4 +76,19 @@ helperCommon.prototype.takeSiteItemOnList=function(dataListSites, urlCurrent) {
         });
     return resultz;
 };
+helperCommon.prototype.notify=function(message,type){
+    var self=this;
+   var html = '<div class="alert alert-' + type + ' alert-dismissable page-alert" id="notify-close-'+this.countNotify+'">';    
+    html += '<button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>';
+    html += message;
+    html += '</div>';    
+    $(html).hide().prependTo('#noty-holder').slideDown();
 
+    $('#notify-close-'+this.countNotify).click(function(e) {
+        e.preventDefault();
+        $(this).slideUp();
+    });
+    setTimeout(function(){
+        $('#notify-close-'+self.countNotify).slideUp();
+    },4000);
+};

@@ -112,6 +112,7 @@
       */
      function firstDataLoad() {
          const storageAppKey = "page-align-sites";
+         const storageAppKeyConfig = "page-align-sites-config";
          let siteActionLibDATA = {
              googleSearch: {
                  keysForMatch: ['https://www.google', '/search?'],
@@ -124,8 +125,12 @@
                  name: "bingSearch"
              }
          };
+         let config={
+           animate:true
+         };
          chrome.storage.sync.set({
-             "page-align-sites": siteActionLibDATA
+             "page-align-sites": siteActionLibDATA,
+             "page-align-sites-config":config
          });
      }
      /**

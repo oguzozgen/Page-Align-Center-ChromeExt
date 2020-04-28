@@ -1,6 +1,5 @@
 //Activates the tab
 chrome.runtime.sendMessage({todo: "showPageAction"});
-
 /**
  * LISTENER
  * Main Event Manupulatin DOM with Margin Left and Right
@@ -9,10 +8,18 @@ chrome.runtime.sendMessage({todo: "showPageAction"});
  */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo === "giveMargin"){ 
-        var  marginValues=""+request.marginValue;
-        $('body').css(  "-webkit-transition","0.7s" );
-        $('body').css("transition","0.7s");
-        $('body').css('margin-left',marginValues);
-        $('body').css('margin-right',(marginValues));
-    }
+    	 chrome.storage.sync.get('page-align-sites-config',function (configDatas) {
+    	 	if (configDatas['page-align-sites-config'].animate) {
+    	 		 $('body').css(  "-webkit-transition","0.7s" );
+       		     $('body').css("transition","0.7s");
+    	 	}else{
+	 			 $('body').css(  "-webkit-transition","0s" );
+       		     $('body').css("transition","0s");
+    	 	}
+            var  marginValues=""+request.marginValue;
+            $('body').css('margin-left',marginValues);
+            $('body').css('margin-right',(marginValues));
+    
+    	 });
+       }
 });

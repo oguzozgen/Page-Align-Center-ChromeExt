@@ -12,6 +12,25 @@ var addNewSiteLibIns = new addNewSiteLib();
  * Difference is working diffent margins on different site that user can configure dynamicly
  */
 $(function () {
+  let animateFirstMissBool=false;
+  $('[name="settings-view-animate-switch"]').bootstrapSwitch({
+  onSwitchChange: function(e, state) {
+      //$('#hideableDiv').toggle(state);
+      chrome.storage.sync.get('page-align-sites-config', function (configDatas) {
+        configDatas["page-align-sites-config"].animate=state;
+        chrome.storage.sync.set({"page-align-sites-config":  Object.assign({}, (configDatas["page-align-sites-config"]))});
+        if(animateFirstMissBool){
+          helperCommon.notify('Animate Changed','success');
+        }
+        animateFirstMissBool=true;
+      });
+    }
+
+  });
+  chrome.storage.sync.get('page-align-sites-config', function (configDatas) {
+    $('[name="settings-view-animate-switch"]').bootstrapSwitch('state',configDatas['page-align-sites-config'].animate);
+  });
+
   /**
    * TODO waiting to get current body margin value and assign to popup values
    * @param {object} tabs 
@@ -106,6 +125,7 @@ $(function () {
    */
   $('#add-site-submit-id').on('click', function () {
     helperCommon.pageChanger("main");
+    helperCommon.notify('Saved','success');
     addNewSiteLibIns.addNewSiteOnList();
   });
     /**
@@ -125,7 +145,20 @@ $(function () {
   $('#add-site-view-back-btn-id').on('click', function () {   
     helperCommon.pageChanger("main");
     addNewSiteLibIns.clearAddSiteForm();
-  });     
-
+  });   
+  /**
+  *LISTENER
+  * opens settings view
+  */
+  $('#main-settings-btn-id').on('click', function () {   
+    helperCommon.pageChanger("settings");
+  }); 
+  /**
+  *LISTENER
+  * return settings view to main view
+  */
+  $('#settings-view-back-btn-id').on('click', function () {   
+    helperCommon.pageChanger("main");
+  });   
 });
   
