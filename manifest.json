@@ -2,8 +2,10 @@
   "manifest_version": 2,
 
   "name": "Page Align Center",
-  "description": "Page Align Center is giving configurable margins to selected/added websites to their left and right that help to focus at center on wide screen",
+  "description": "Page Align Center is center pages on website body element. It saves your center configuration for per page. It's useful for ultra wide screen or left side aligned websites. ",
   "version": "1.1",
+  "default_locale": "en",
+  "author": "Oguz Ozgen",
   "icons": {
     "128": "img/icon128.png",
     "48": "img/icon48.png",
