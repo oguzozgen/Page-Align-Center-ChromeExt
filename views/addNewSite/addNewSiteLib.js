@@ -77,7 +77,12 @@ addNewSiteLib.prototype.saveNewSiteToStorage = function (saveSiteItem) {
     const storageAppKey = "page-align-sites";
     var siteList = Object.assign({}, (saveSitesDatas[storageAppKey]));
     var siteItem = Object.assign({}, (saveSiteItem));
-    siteList[siteItem.name] = Object.assign({}, (siteItem));
+    if(siteList[siteItem.name]===undefined){
+      siteList[siteItem.name]=[];
+      siteList[siteItem.name].push(Object.assign({}, (siteItem)));
+    }else{
+      siteList[siteItem.name].push(Object.assign({}, (siteItem)));
+    }
     chrome.storage.sync.set({
       'page-align-sites': Object.assign({}, (siteList))
     }, function () {

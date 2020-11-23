@@ -76,6 +76,47 @@ helperCommon.prototype.takeSiteItemOnList=function(dataListSites, urlCurrent) {
         });
     return resultz;
 };
+helperCommon.prototype.takeSiteItemOnList2=function(dataListSites, urlCurrent) {
+    let resultz = {
+        item: null,
+        result: false
+    };
+    var urlSplittedBySlash = urlCurrent.split('/');
+    var websiteWithoutRoutes = urlSplittedBySlash[2];
+    if(dataListSites[websiteWithoutRoutes]!==undefined)
+    {
+        resultz = {
+            item: dataListSites[websiteWithoutRoutes],
+            result: true
+        };
+    }
+    return resultz;
+ }
+ helperCommon.prototype.takeBestMatchResult=function(resultZ){
+    let counter =0;
+    let raceMatch=[];
+    resultZ.item.forEach(siteKeywordSet=>{
+        raceData={index:counter,matched:0};
+        let matchedCounter=0;
+        siteKeywordSet.keysForMatch.forEach(keyword=>{
+           let isIncluded=urlCurrent.includes(keyword);
+           if(isIncluded===true)
+           {
+                matchedCounter=matchedCounter+1; 
+           }
+        });
+        if(matchedCounter<siteKeywordSet.keysForMatch.length){
+            matchedCounter=0;
+        }
+        raceData={index:counter,matched:matchedCounter};
+        raceMatch.push(raceData);
+        counter=counter+1;
+    });
+    let maxMatch=_.where(raceMatch, {matched: _.max(_.pluck(raceMatch, 'matched'))});
+    let highestIndex = _.max(maxMatch, function(o){return o.index;});
+    return highestIndex;
+
+ }
 helperCommon.prototype.notify=function(message,type){
     var self=this;
    var html = '<div class="alert alert-' + type + ' alert-dismissable page-alert" id="notify-close-'+this.countNotify+'">';    

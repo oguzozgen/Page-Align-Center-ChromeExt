@@ -52,9 +52,10 @@ $(function () {
         // Main storage name 
         const storageAppKey = "page-align-sites";
         var urlCurrent = tabs[0].url;
-        var isResultItemOrFalse = helperCommon.takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
+        var isResultItemOrFalse = helperCommon.takeSiteItemOnList2(saveSitesDatas[storageAppKey], urlCurrent);
         if (isResultItemOrFalse.result === true) {
-          setRangeSliderValue(isResultItemOrFalse.item.marginValue);
+          var bestMatchResult= helperCommon.takeBestMatchResult(isResultItemOrFalse);
+          setRangeSliderValue(isResultItemOrFalse.item[bestMatchResult.index].marginValue);
         } else {
           useCurrentBodyMarginToSlider()
         }

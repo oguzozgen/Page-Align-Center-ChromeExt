@@ -24,35 +24,67 @@
                             marginValue: valueMargin + "%"
                         })
                     }
-                     var isResultItemOrFalse = takeSiteItemOnList(saveSitesDatas[storageAppKey], urlCurrent);
+                     var isResultItemOrFalse = takeSiteItemOnList2(saveSitesDatas[storageAppKey], urlCurrent);
                      if (isResultItemOrFalse.result === true) {
-                         //Tight doMarginAndSaveSite() 
-                         function decideMarginSavedOrNewValue(valueNew) {
-                             var result = "15";
-                             if (valueNew !== undefined && valueNew !== null) {
-                                 result = valueNew;
-                             } else {
-                                 var marginFromStore = isResultItemOrFalse.item.marginValue;
-                                 result = marginFromStore;
-                             }
-                             return result;
-                         }                     
+                                         
                          //Tight doMarginAndSaveSite()
-                         function saveChangedValueToList() {
+                         function saveChangedValueToList(selectedDataIndex) {
                              var siteList = Object.assign({}, (saveSitesDatas[storageAppKey]));
                              var siteItem = Object.assign({}, (isResultItemOrFalse.item));
-                             siteItem.marginValue = actionMarginValue;
-                             siteList[siteItem.name] = Object.assign({}, (siteItem));
+                             siteItem[selectedDataIndex].marginValue = actionMarginValue;
+                             siteList[siteItem[selectedDataIndex].name] = Object.assign([], (siteItem));
                              chrome.storage.sync.set({
                                  'page-align-sites': Object.assign({}, (siteList))
                              });
                          }
+                         function takeBestMatchResult(resultZ){
+                            let counter =0;
+                            let raceMatch=[];
+                            resultZ.item.forEach(siteKeywordSet=>{
+                                raceData={index:counter,matched:0};
+                                let matchedCounter=0;
+                                siteKeywordSet.keysForMatch.forEach(keyword=>{
+                                   let isIncluded=urlCurrent.includes(keyword);
+                                   if(isIncluded===true)
+                                   {
+                                        matchedCounter=matchedCounter+1; 
+                                   }
+                                });
+                                if(matchedCounter<siteKeywordSet.keysForMatch.length){
+                                    matchedCounter=0;
+                                }
+                                raceData={index:counter,matched:matchedCounter};
+                                raceMatch.push(raceData);
+                                counter=counter+1;
+                            });
+                            let maxMatch=_.where(raceMatch, {matched: _.max(_.pluck(raceMatch, 'matched'))});
+                            let highestIndex = _.max(maxMatch, function(o){return o.index;});
+                            return highestIndex;
 
+                         }
+                            //Tight doMarginAndSaveSite() 
+                            function decideMarginSavedOrNewValue(valueNew) {
+                                var result = "15";
+                                if (valueNew !== undefined && valueNew !== null) {
+                                    result = valueNew;
+                                } else {
+                                    let raceWinner=takeBestMatchResult(isResultItemOrFalse);
+                                    var marginFromStore = isResultItemOrFalse.item[raceWinner.index].marginValue;
+                                    result = marginFromStore;
+                                }
+                                return result;
+                            }  
 
                          // RUN FLOW
                          var actionMarginValue = decideMarginSavedOrNewValue(marginValueNew);
+                         var bestMatchResult= takeBestMatchResult(isResultItemOrFalse);
                          sendMarginToListenerGiveMargin(actionMarginValue);
-                         saveChangedValueToList();
+                         saveChangedValueToList(bestMatchResult.index);
+
+                         
+
+
+
                      }
                      else{
                         sendMarginToListenerGiveMargin(marginValueNew)
@@ -61,6 +93,7 @@
      }
 
      /**
+      * DEPRECATED for takeSiteItemOnList 
       * TODO will move to helperCommon
       * Checks List of booleans, Are they all true
       * @param {Array-Boolean} boolValuesAr ["siteURLKeyword1","siteURLKeyword2"]
@@ -76,6 +109,7 @@
          return res;
      }
      /**
+      * DEPRECATED
       * TODO will move to helperCommon
       * Checks Site added or not
       * @param {string} siteUrl 
@@ -89,6 +123,7 @@
          _.each(dataListSites,
              function (item) {
                  let cond = [];
+
                  item.keysForMatch.forEach(kFM => {
                      let res = urlCurrent.includes(kFM);
                      cond.push(res);
@@ -102,6 +137,24 @@
                  }
              });
          return resultz;
+     }
+
+
+     function takeSiteItemOnList2(dataListSites, urlCurrent) {
+        let resultz = {
+            item: null,
+            result: false
+        };
+        var urlSplittedBySlash = urlCurrent.split('/');
+        var websiteWithoutRoutes = urlSplittedBySlash[2];
+        if(dataListSites[websiteWithoutRoutes]!==undefined)
+        {
+            resultz = {
+                item: dataListSites[websiteWithoutRoutes],
+                result: true
+            };
+        }
+        return resultz;
      }
 
      /**
