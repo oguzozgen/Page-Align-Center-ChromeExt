@@ -80,11 +80,6 @@
                          var bestMatchResult= takeBestMatchResult(isResultItemOrFalse);
                          sendMarginToListenerGiveMargin(actionMarginValue);
                          saveChangedValueToList(bestMatchResult.index);
-
-                         
-
-
-
                      }
                      else{
                         sendMarginToListenerGiveMargin(marginValueNew)
@@ -167,19 +162,20 @@
          const storageAppKey = "page-align-sites";
          const storageAppKeyConfig = "page-align-sites-config";
          let siteActionLibDATA = {
-             googleSearch: {
-                 keysForMatch: ['https://www.google', '/search?'],
-                 marginValue: "15",
-                 name: "googleSearch"
-             },
-             bingSearch: {
-                 keysForMatch: ['https://www.bing', '/search?'],
-                 marginValue: "15",
-                 name: "bingSearch"
-             }
+             "www.google.com": [{
+                keysForMatch: ["www.google.com", 'webhp'],
+                marginValue: "0",
+                name: "googleSearch"
+              },
+              {
+                keysForMatch: ['https://www.google', '/search?'],
+                marginValue: "0",
+                name: "googleSearch"
+              }
+             ],
          };
          let config={
-           animate:true
+           animate:false
          };
          chrome.storage.sync.set({
              "page-align-sites": siteActionLibDATA,
@@ -230,3 +226,26 @@
              doMarginAndSaveSite(tab);           
          }
      });
+
+    chrome.webNavigation.onDOMContentLoaded.addListener(function (frm) {
+        console.log("onDOMContentLoaded");
+        $("html").css("display","none");
+    });
+
+     chrome.webNavigation.onCommitted.addListener(function (frm) {
+      console.log("onCommitted");
+      $("html").css("display","none");
+      console.log(frm);
+      console.log($("html"))
+      console.log($("body"))
+      if (frm.frameId===0 && frm.url.substring(0, 4) === "http") {
+        doMarginAndSaveSite({id:frm.tabId,url:frm.url});           
+      }
+    });
+    
+    chrome.webNavigation.onCompleted.addListener(function (frm) {
+        console.log("onCompleted");
+        $("html").css("display","block");
+    });
+
+     

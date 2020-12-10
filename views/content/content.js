@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     	 	}
             var  marginValues=""+request.marginValue;
             $('body').css('margin-left',marginValues);
-            $('body').css('margin-right',(marginValues));
+            $('body').css('margin-right',marginValues);
     
     	 });
        }

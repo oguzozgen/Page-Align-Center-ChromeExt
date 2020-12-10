@@ -92,7 +92,7 @@ helperCommon.prototype.takeSiteItemOnList2=function(dataListSites, urlCurrent) {
     }
     return resultz;
  }
- helperCommon.prototype.takeBestMatchResult=function(resultZ){
+ helperCommon.prototype.takeBestMatchResult=function(resultZ,urlCurrent){
     let counter =0;
     let raceMatch=[];
     resultZ.item.forEach(siteKeywordSet=>{

@@ -54,7 +54,8 @@ $(function () {
         var urlCurrent = tabs[0].url;
         var isResultItemOrFalse = helperCommon.takeSiteItemOnList2(saveSitesDatas[storageAppKey], urlCurrent);
         if (isResultItemOrFalse.result === true) {
-          var bestMatchResult= helperCommon.takeBestMatchResult(isResultItemOrFalse);
+          var bestMatchResult= helperCommon.takeBestMatchResult(isResultItemOrFalse,urlCurrent);
+          console.log(bestMatchResult);
           setRangeSliderValue(isResultItemOrFalse.item[bestMatchResult.index].marginValue);
         } else {
           useCurrentBodyMarginToSlider()
